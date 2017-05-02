@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import thumbcoil from 'thumbcoil';
 import Box from './Box';
 
-class ParseView extends Component {
+class MediaContainer extends Component {
   parse(name, bytes) {
     if (!bytes) {
       return null;
@@ -35,4 +35,4 @@ class ParseView extends Component {
   }
 }
 
-export default ParseView;
+export default MediaContainer;

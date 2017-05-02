@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DropzoneContainer from './DropzoneContainer';
 import './FileLoader.css';
 
 class FileLoader extends Component {
@@ -6,9 +7,8 @@ class FileLoader extends Component {
     super(props);
 
     this.state = {
-      value: '',
-      blob: null,
-      url: 'https://hslsslak-a.akamaihd.net/3303963094001/5147667971001/3303963094001_5147667971001_5147609827001-1.ts'
+      file: null,
+      url: 'http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8'
     };
 
     this.handleChangeLocal = this.handleChangeLocal.bind(this);
@@ -17,10 +17,9 @@ class FileLoader extends Component {
     this.handleClickRemote = this.handleClickRemote.bind(this);
   }
 
-  handleChangeLocal(event) {
+  handleChangeLocal(file) {
     this.setState({
-      value: event.target.value,
-      blob: event.target.files[0]
+      file
     });
   }
 
@@ -31,7 +30,7 @@ class FileLoader extends Component {
   }
 
   handleClickLocal() {
-    if (!this.state.blob) {
+    if (!this.state.file) {
       // no blob to load
       return;
     }
@@ -40,12 +39,16 @@ class FileLoader extends Component {
 
     reader.addEventListener('loadend', () => {
       this.props.onLoadend({
-        bytes: new Uint8Array(reader.result),
-        name: this.state.value
+        data: reader.result,
+        name: this.state.file.name
       });
     });
 
-    reader.readAsArrayBuffer(this.state.blob);
+    reader['readAs' + this.responseType(this.state.file.name)](this.state.file);
+  }
+
+  responseType(filename) {
+    return /\.m3u8/i.test(filename) ? 'Text' : 'ArrayBuffer';
   }
 
   handleClickRemote() {
@@ -57,10 +60,10 @@ class FileLoader extends Component {
     let xhr = new XMLHttpRequest();
     let url = this.state.url;
 
-    xhr.responseType = 'arraybuffer';
+    xhr.responseType = this.responseType(this.state.url).toLowerCase();
     xhr.addEventListener('load', () => {
       this.props.onLoadend({
-        bytes: new Uint8Array(xhr.response),
+        data: xhr.response,
         name: url
       });
     });
@@ -73,11 +76,8 @@ class FileLoader extends Component {
       <form>
         <fieldset>
           <legend>Load an MP4 or MP2TS:</legend>
-          <label>
-            Local File
-            <input type="file" value={this.state.value} onChange={this.handleChangeLocal} />
-            <button type="button" onClick={this.handleClickLocal}>Load File</button>
-          </label>
+          <DropzoneContainer onChange={this.handleChangeLocal} />
+          <button type="button" onClick={this.handleClickLocal}>Load File</button>
           <label>
             Remote URL
             <input type="text" value={this.state.url} onChange={this.handleChangeRemote} />
