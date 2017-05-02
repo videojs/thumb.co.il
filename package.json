@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "m3u8-parser": "^2.1.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-dropzone-component": "^2.0.0",

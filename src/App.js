@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FileLoader from './FileLoader/FileLoader';
 import ParseView from './ParseView';
+import m3u8 from 'm3u8-parser';
 import logo from './logo.svg';
 import './App.css';
 
@@ -8,15 +9,35 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      bytes: null,
-      name: ''
+      media: {
+        bytes: null,
+        name: ''
+      },
+      manifest: null
     };
 
     this.onLoadend = this.onLoadend.bind(this);
   }
 
   onLoadend(data) {
-    this.setState(data);
+    if (/\.m3u8/i.test(data.name)) {
+      this.loadedManifest(data);
+    } else if(/\.ts/i.test(data.name)){
+      this.loadedTS(data);
+    }
+  }
+
+  loadedManifest(data) {
+
+  }
+
+  loadedTS(data) {
+    this.setState({
+      media: {
+        bytes: data.bytes,
+        name: data.name
+      }
+    });
   }
 
   render() {
@@ -27,7 +48,7 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <FileLoader onLoadend={ this.onLoadend } />
-        <ParseView name={this.state.name} bytes={this.state.bytes} />
+        <ParseView name={this.state.media.name} bytes={this.state.media.bytes} />
       </div>
     );
   }
