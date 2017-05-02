@@ -1,0 +1,54 @@
+.box {
+  background-color: rgba(0,0,0,0.01);
+  display: block;
+  margin-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.box-type {
+  background-color: rgba(96,96,96,1);
+  color: #eee;
+  display: block;
+  padding: 5px;
+}
+.box-ftyp>.box-type,
+.box-access_unit_delimiter_rbsp>.box-type {
+  background-color: rgba(128,96,64,1);
+}
+.box-moov>.box-type,
+.box-slice_layer_without_partitioning_rbsp_idr>.box-type,
+.box-video>.box-type {
+  background-color: rgba(128,64,96,1);
+}
+.box-moof>.box-type,
+.box-slice_layer_without_partitioning_rbsp>.box-type,
+.box-audio>.box-type {
+  background-color: rgba(64,128,96,1);
+}
+.box-mdat>.box-type,
+.box-seq_parameter_set_rbsp>.box-type,
+.box-pic_parameter_set_rbsp>.box-type,
+.box-pat>.box-type,
+.box-pmt>.box-type {
+  background-color: rgba(64,96,128,1);
+}
+.boxes {
+  display: block;
+}
+.properties {
+  display: table;
+}
+.property {
+  display: table-row;
+}
+.name, .value {
+  font-family: monospace;
+  display: table-cell;
+  padding: 5px;
+}
+.box-type::before {
+  content: '\25bc ';
+}
+.box-collapsed>.box-type::before {
+  content: '\25b6 ';
+}
