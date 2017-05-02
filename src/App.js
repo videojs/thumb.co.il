@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FileLoader from './FileLoader/FileLoader';
 import ParseView from './ParseView';
 import m3u8 from 'm3u8-parser';
-import logo from './logo.svg';
+import logo from './thumbcoil_logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -45,7 +45,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Welcome to Thumbcoil</h2>
         </div>
         <FileLoader onLoadend={ this.onLoadend } />
         <ParseView name={this.state.media.name} bytes={this.state.media.bytes} />
