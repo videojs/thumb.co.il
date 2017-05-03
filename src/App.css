@@ -128,3 +128,21 @@ body{
   font-size: 18px;
 }
 
+.gopview {
+  position: relative;
+}
+
+.rv-crosshair {
+  position: absolute;
+  margin-top: -300px;
+}
+
+.crosshair>p {
+  padding: 0;
+  margin: 0;
+}
+
+.gops rect {
+  rx: 8px;
+  ry: 8px;
+}
