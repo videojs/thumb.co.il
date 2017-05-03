@@ -8,10 +8,7 @@ import './App.css';
 
 const initialState = function() {
   return {
-    media: {
-      bytes: null,
-      name: ''
-    },
+    media: null,
     manifest: null
   };
 };
@@ -74,7 +71,6 @@ class App extends Component {
   }
 
   selectMedia(media) {
-    debugger;
     const requestInfo = {
       options: {
         url: media.resolvedUri,
@@ -96,7 +92,7 @@ class App extends Component {
         </div>
         <FileLoader requestLoad={ this.requestLoad } />
         {this.state.manifest && (<ManifestContainer manifest={this.state.manifest} selectMedia={this.selectMedia} />) }
-        <MediaContainer name={this.state.media.name} bytes={this.state.media.bytes} />
+        {this.state.media && <MediaContainer name={this.state.media.name} bytes={this.state.media.bytes} /> }
       </div>
     );
   }

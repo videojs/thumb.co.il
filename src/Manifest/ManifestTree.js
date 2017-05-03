@@ -8,7 +8,6 @@ class ManifestTreeSegment extends Component {
   }
 
   handleClick() {
-    debugger;
     this.props.selectMedia(this.props.segment);
   }
 

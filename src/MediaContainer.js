@@ -3,6 +3,14 @@ import thumbcoil from 'thumbcoil';
 import Box from './Box';
 
 class MediaContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      parsed: this.parse(this.props.name, this.props.bytes)
+    };
+  }
+
   parse(name, bytes) {
     if (!bytes) {
       return null;
@@ -17,13 +25,11 @@ class MediaContainer extends Component {
   }
 
   render() {
-    const parsed = this.parse(this.props.name, this.props.bytes);
-
-    if (!parsed) {
+    if (!this.state.parsed) {
       return null;
     }
 
-    const boxes = parsed.esMap.map((packet, index) => {
+    const boxes = this.state.parsed.esMap.map((packet, index) => {
       return <Box box={packet} key={index} />
     });
 
