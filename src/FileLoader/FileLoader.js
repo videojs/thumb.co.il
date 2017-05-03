@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DropzoneContainer from './DropzoneContainer';
+import './FileLoader.css';
 
 class FileLoader extends Component {
   constructor(props) {
@@ -62,18 +63,20 @@ class FileLoader extends Component {
 
   render() {
     return (
-      <form>
-        <fieldset>
-          <legend>Load an MP4 or MP2TS:</legend>
-          <DropzoneContainer onChange={this.handleChangeLocal} />
-          <button type="button" onClick={this.handleClickLocal}>Load File</button>
-          <label>
-            Remote URL
-            <input type="text" value={this.state.url} onChange={this.handleChangeRemote} />
-            <button type="button" onClick={this.handleClickRemote}>Load URL</button>
-          </label>
-        </fieldset>
-      </form>
+      <div className="FileLoader">
+        <form>
+          <div className="FileLoader-options">
+            <div className="FileLoader-remote">
+                <input type="text" value={this.state.url} onChange={this.handleChangeRemote} />
+                <button type="button" onClick={this.handleClickRemote}>Load remote URL</button>
+            </div>
+            <div className="FileLoader-local">
+              <DropzoneContainer onChange={this.handleChangeLocal} />
+              <button type="button" onClick={this.handleClickLocal}>Load local File</button>
+            </div>
+          </div>
+        </form>
+      </div>
     );
   }
 }

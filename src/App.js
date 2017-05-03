@@ -87,10 +87,17 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Thumbcoil</h2>
+          <div className="App-logo">
+            <img src={logo} alt="logo" />
+            <h1 className="App-name">thumb.co.il</h1>
+          </div>
+          <div className="App-fileloader">
+            <FileLoader requestLoad={ this.requestLoad } />
+          </div>            <div className="App-info">
+            <div className="App-description">A web-based video inspector</div>
+            <div className="App-sub-description">Inspect the structure of an MP4, FLV or MPEG-2 Transport Stream</div>
+          </div>
         </div>
-        <FileLoader requestLoad={ this.requestLoad } />
         {this.state.manifest && (<ManifestContainer manifest={this.state.manifest} selectMedia={this.selectMedia} />) }
         {this.state.media && <MediaContainer name={this.state.media.name} bytes={this.state.media.bytes} /> }
       </div>

@@ -1,0 +1,53 @@
+.FileLoader {
+  font-size: 24px;
+  text-align: left;
+  height: 100%;
+}
+
+.FileLoader > form {
+  height: 100%;
+}
+
+.FileLoader-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+}
+
+.FileLoader-options button {
+  width: 100%;
+  font-family: 'Text Me One', sans-serif;
+  border: none;
+  background-color: #b1c647;
+  color: #333;
+  margin-top: 12px;
+  flex: 0 0 36px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.FileLoader-options button:hover {
+  cursor: pointer;
+  background-color: #c1d42f;
+}
+
+.FileLoader-local, .FileLoader-remote {
+  flex: 0 0 calc(50% - 5px);
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.FileLoader-remote input, .FileLoader .filepicker {
+  height: 30px;
+  min-height: 0;
+  padding: 5px;
+  border-radius: 5px;
+  background: #eee;
+  border: 2px #e1e1e1 solid;
+  color: #515151;
+}

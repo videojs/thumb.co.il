@@ -1,20 +1,72 @@
+body{
+  background-color: #eee;
+  color: #717171;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 180px;
-  margin-left: 50px;
-  float: left;
-}
-
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+  height: auto;
+  display: flex;
+  padding: 0 20px 6px 0;
   font-family: 'Text Me One', sans-serif;
   font-size: 36px;
+  justify-content: flex-start;
+  align-items: stretch;
+  background-color: #333;
+  color: #ddd;
+  margin-bottom: 24px;
+  border-bottom: solid 1px #ccc;
+}
+
+
+.App-logo {
+  height: 130px;
+  position: relative;
+  width: 130px;
+  flex: 0 0 130px;
+  margin: 20px 0 0 20px;
+  align-self: flex-end;
+  transform: rotate(-30deg);
+}
+
+.App-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+}
+
+.App-name {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  color: #eee;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+.App-info {
+  align-self: center;
+  flex-grow: 1;
+  text-align: right;
+  padding-bottom: 6px;}
+
+.App-fileloader {
+  flex: 0 0 350px;
+  align-self: stretch;
+  margin: 12px 20px 6px;
+}
+
+.App-description {
+  color: #eee;
+}
+
+.App-sub-description {
+  font-size: 18px;
 }
 
 .App-intro {

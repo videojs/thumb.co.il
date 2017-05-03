@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server'
 import DropzoneComponent from 'react-dropzone-component';
 import '../../node_modules/react-dropzone-component/styles/filepicker.css';
 
+
 class DropzoneContainer extends Component {
   constructor(props) {
     super(props);
@@ -54,9 +55,22 @@ class DropzoneContainer extends Component {
       addedfile: this.props.onChange
     }
 
+    const big = {
+      fontSize: '14px',
+      display: 'block'
+    };
+
+    const small = {
+      fontSize: '12px',
+      display: 'block'
+    };
+
     return (
       <DropzoneComponent config={config} eventHandlers={eventHandlers} djsConfig={djsConfig}>
-        <div className="dz-message">Drop file here (or click to browse)</div>
+        <div className="dz-message">
+          <span style={big}>Drop file here</span>
+          <span style={small}>(or click to browse)</span>
+        </div>
       </DropzoneComponent>
     );
   }
