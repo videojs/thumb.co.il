@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FileLoader from './FileLoader/FileLoader';
-import MediaContainer from './MediaContainer';
+import MediaContainer from './Media/MediaContainer';
 import ManifestContainer from './Manifest/ManifestContainer';
 import Load from './LoaderUtils'
 import logo from './thumbcoil_logo.svg';

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import thumbcoil from 'thumbcoil';
-import Box from './Box';
+import MediaStats from './MediaStats';
 
 class MediaContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      parsed: this.parse(this.props.name, this.props.bytes)
+      parsed: this.parse(this.props.name, this.props.bytes),
+      activeView: 0
     };
   }
 
@@ -29,13 +30,9 @@ class MediaContainer extends Component {
       return null;
     }
 
-    const boxes = this.state.parsed.esMap.map((packet, index) => {
-      return <Box box={packet} key={index} />
-    });
-
     return (
       <div>
-        {boxes}
+        {this.state.activeView === 0 && <MediaStats packets={this.state.parsed.esMap} />}
       </div>
     );
   }
