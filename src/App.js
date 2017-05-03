@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FileLoader from './FileLoader/FileLoader';
 import MediaContainer from './MediaContainer';
 import ManifestContainer from './Manifest/ManifestContainer';
-import logo from './logo.svg';
+import logo from './thumbcoil_logo.svg';
 import './App.css';
 
 const initialState = function() {
@@ -57,7 +57,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Welcome to Thumbcoil</h2>
         </div>
         <FileLoader onLoadend={ this.onLoadend } />
         {this.state.manifest && (<ManifestContainer manifest={this.state.manifest} />) }
