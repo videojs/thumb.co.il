@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FileLoader from './FileLoader/FileLoader';
 import MediaContainer from './MediaContainer';
 import ManifestContainer from './Manifest/ManifestContainer';
+import Load from './LoaderUtils'
 import logo from './thumbcoil_logo.svg';
 import './App.css';
 
@@ -20,18 +21,38 @@ class App extends Component {
     super();
     this.state = initialState();
 
-    this.onLoadend = this.onLoadend.bind(this);
+    this.requestLoad = this.requestLoad.bind(this);
+    this.selectMedia = this.selectMedia.bind(this);
   }
 
-  onLoadend(data) {
-    // Clear the state on new loads
-    this.setState(initialState());
+  requestLoad(requestInfo) {
+    const location = requestInfo.location;
+    const reset = requestInfo.reset;
 
+    Load[location](requestInfo.options, (...args) => {
+      if (reset) {
+        this.setState(initialState());
+      }
+
+      this[location + 'Loadend'](...args);
+    });
+  }
+
+  localLoadend(data) {
     if (/\.m3u8/i.test(data.name)) {
       this.loadedManifest(data);
     } else if(/\.ts/i.test(data.name)){
       this.loadedTS(data);
     }
+  }
+
+  remoteLoadend(error, response) {
+    const data = {
+      name: response.url,
+      data: response.body
+    };
+
+    this.localLoadend(data);
   }
 
   loadedManifest(data) {
@@ -52,6 +73,20 @@ class App extends Component {
     });
   }
 
+  selectMedia(media) {
+    debugger;
+    const requestInfo = {
+      options: {
+        url: media.resolvedUri,
+        headers: media.xhrHeaders
+      },
+      location: 'remote',
+      reset: false
+    };
+
+    this.requestLoad(requestInfo);
+  }
+
   render() {
     return (
       <div className="App">
@@ -59,8 +94,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to Thumbcoil</h2>
         </div>
-        <FileLoader onLoadend={ this.onLoadend } />
-        {this.state.manifest && (<ManifestContainer manifest={this.state.manifest} />) }
+        <FileLoader requestLoad={ this.requestLoad } />
+        {this.state.manifest && (<ManifestContainer manifest={this.state.manifest} selectMedia={this.selectMedia} />) }
         <MediaContainer name={this.state.media.name} bytes={this.state.media.bytes} />
       </div>
     );

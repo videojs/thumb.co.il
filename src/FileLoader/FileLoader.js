@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DropzoneContainer from './DropzoneContainer';
-import './FileLoader.css';
 
 class FileLoader extends Component {
   constructor(props) {
@@ -35,20 +34,13 @@ class FileLoader extends Component {
       return;
     }
 
-    let reader = new FileReader();
+    const requestInfo = {
+      options: this.state.file,
+      reset: true,
+      location: 'local'
+    };
 
-    reader.addEventListener('loadend', () => {
-      this.props.onLoadend({
-        data: reader.result,
-        name: this.state.file.name
-      });
-    });
-
-    reader['readAs' + this.responseType(this.state.file.name)](this.state.file);
-  }
-
-  responseType(filename) {
-    return /\.m3u8/i.test(filename) ? 'Text' : 'ArrayBuffer';
+    this.props.requestLoad(requestInfo);
   }
 
   handleClickRemote() {
@@ -57,18 +49,15 @@ class FileLoader extends Component {
       return;
     }
 
-    let xhr = new XMLHttpRequest();
-    let url = this.state.url;
+    const requestInfo = {
+      options: {
+        url: this.state.url
+      },
+      reset: true,
+      location: 'remote'
+    };
 
-    xhr.responseType = this.responseType(this.state.url).toLowerCase();
-    xhr.addEventListener('load', () => {
-      this.props.onLoadend({
-        data: xhr.response,
-        name: url
-      });
-    });
-    xhr.open('GET', url);
-    xhr.send();
+    this.props.requestLoad(requestInfo);
   }
 
   render() {

@@ -4,6 +4,38 @@ import extend from 'extend';
 import resolveUrl from './resolve-url';
 import ManifestTree from './ManifestTree';
 
+/**
+ * Turns segment byterange into a string suitable for use in
+ * HTTP Range requests
+ *
+ * @param {Object} byterange - an object with two values defining the start and end
+ *                             of a byte-range
+ */
+const byterangeStr = function(byterange) {
+  let byterangeStart;
+  let byterangeEnd;
+
+  // `byterangeEnd` is one less than `offset + length` because the HTTP range
+  // header uses inclusive ranges
+  byterangeEnd = byterange.offset + byterange.length - 1;
+  byterangeStart = byterange.offset;
+  return 'bytes=' + byterangeStart + '-' + byterangeEnd;
+};
+
+/**
+ * Defines headers for use in the xhr request for a particular segment.
+ *
+ * @param {Object} segment - a simplified copy of the segmentInfo object from SegmentLoader
+ */
+const segmentXhrHeaders = function(segment) {
+  let headers = {};
+
+  if (segment.byterange) {
+    headers.Range = byterangeStr(segment.byterange);
+  }
+  return headers;
+};
+
 const parse = function(text) {
   const parser = new m3u8.Parser();
 
@@ -15,7 +47,6 @@ const parse = function(text) {
 
 const updateMaster = function(master, manifest) {
   const update = extend(true, {}, master);
-
   let i = update.playlists.length;
 
   while (i--) {
@@ -41,6 +72,9 @@ const updateMaster = function(master, manifest) {
         if (segment.map && !segment.map.resolvedUri) {
           segment.map.resolvedUri = resolveUrl(playlist.resolvedUri, segment.map.uri);
         }
+        if (!segment.xhrHeaders) {
+          segment.xhrHeaders = segmentXhrHeaders(segment);
+        }
       }
     }
   }
@@ -58,10 +92,14 @@ class ManifestContainer extends Component {
 
     if (manifest.playlists) {
       // loaded master
-      this.state = this.loadedMaster(manifest);
+      this.state = {
+        master: this.loadedMaster(manifest)
+      };
     } else {
       // loaded media playlist
-      this.state = this.loadedMediaPlaylist(manifest);
+      this.state = {
+        master: this.loadedMediaPlaylist(manifest)
+      };
     }
   }
 
@@ -132,13 +170,15 @@ class ManifestContainer extends Component {
       const manifest = parse(response);
 
       manifest.uri = uri;
-      return updateMaster(prevState, manifest);
+      return {
+        master: updateMaster(prevState.master, manifest)
+      }
     });
   }
 
   render() {
     return (
-      <ManifestTree master={this.state} />
+      <ManifestTree master={this.state.master} selectMedia={this.props.selectMedia} />
     );
   }
 }
