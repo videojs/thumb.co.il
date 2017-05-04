@@ -17,7 +17,7 @@ class ManifestTreeSegment extends Component {
 
   render() {
     return (
-      <ListItem primaryText={this.props.segment.uri} onTouchTap={this.handleClick} />
+      <ListItem style={{paddingLeft: '20px'}} primaryText={this.props.segment.uri} onTouchTap={this.handleClick} />
     );
   }
 }

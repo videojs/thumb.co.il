@@ -81,6 +81,10 @@ class App extends Component {
       reset: false
     };
 
+    this.setState({
+      media: null
+    });
+
     this.requestLoad(requestInfo);
   }
 

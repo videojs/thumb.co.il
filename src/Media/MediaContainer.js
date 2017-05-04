@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import thumbcoil from 'thumbcoil';
+import {Tabs, Tab} from 'material-ui/Tabs';
 import MediaStats from './MediaStats';
 import GopView from '../GopView';
+
+import './MediaContainer.css';
 
 class MediaContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      parsed: this.parse(this.props.name, this.props.bytes),
-      activeView: 1
+      parsed: this.parse(this.props.name, this.props.bytes)
     };
   }
 
@@ -32,9 +34,15 @@ class MediaContainer extends Component {
     }
 
     return (
-      <div>
-        {this.state.activeView === 0 && <MediaStats packets={this.state.parsed.esMap} />}
-        {this.state.activeView === 1 && <GopView name={this.props.name} packets={this.state.parsed.esMap} />}
+      <div className="MediaContainer">
+        <Tabs inkBarStyle={{backgroundColor: '#b1c647'}} tabItemContainerStyle={{backgroundColor: '#77b3bb', height: '50px'}}>
+          <Tab label="Overview">
+            <MediaStats packets={this.state.parsed.esMap} />
+          </Tab>
+          <Tab label="Gop Structure">
+            <GopView name={this.props.name} packets={this.state.parsed.esMap} />
+          </Tab>
+        </Tabs>
       </div>
     );
   }
