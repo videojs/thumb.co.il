@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server'
 import DropzoneComponent from 'react-dropzone-component';
 import IconButton from 'material-ui/IconButton';
 
-import FileUpload from 'material-ui/svg-icons/file/file-upload';
+import FileUpload from 'material-ui/svg-icons/editor/attach-file';
 // import '../../node_modules/react-dropzone-component/styles/filepicker.css';
 
 
@@ -57,7 +57,7 @@ class DropzoneContainer extends Component {
 
     return (
       <DropzoneComponent config={config} eventHandlers={eventHandlers} djsConfig={djsConfig}>
-        <IconButton className="dz-message" style={{border: 'solid 2px #eee', padding: '0'}}><FileUpload color="#eee" /><div className="upload-icon-text">Upload</div></IconButton>
+        <IconButton className="dz-message" style={{border: 'solid 2px #eee', padding: '0'}}><FileUpload color="#eee" /></IconButton>
       </DropzoneComponent>
     );
   }

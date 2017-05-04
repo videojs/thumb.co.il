@@ -35,7 +35,7 @@ class MediaContainer extends Component {
 
     return (
       <div className="MediaContainer">
-        <Tabs inkBarStyle={{backgroundColor: '#b1c647'}} tabItemContainerStyle={{backgroundColor: '#77b3bb', height: '50px'}}>
+        <Tabs inkBarStyle={{backgroundColor: '#b43665'}} tabItemContainerStyle={{backgroundColor: '#77b3bb', height: '50px'}}>
           <Tab label="Overview">
             <MediaStats packets={this.state.parsed.esMap} />
           </Tab>
