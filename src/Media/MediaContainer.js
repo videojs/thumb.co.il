@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import thumbcoil from 'thumbcoil';
 import MediaStats from './MediaStats';
+import GopView from '../GopView';
 
 class MediaContainer extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class MediaContainer extends Component {
 
     this.state = {
       parsed: this.parse(this.props.name, this.props.bytes),
-      activeView: 0
+      activeView: 1
     };
   }
 
@@ -33,6 +34,7 @@ class MediaContainer extends Component {
     return (
       <div>
         {this.state.activeView === 0 && <MediaStats packets={this.state.parsed.esMap} />}
+        {this.state.activeView === 1 && <GopView name={this.props.name} packets={this.state.parsed.esMap} />}
       </div>
     );
   }

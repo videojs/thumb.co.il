@@ -4,6 +4,7 @@ import MediaContainer from './Media/MediaContainer';
 import ManifestContainer from './Manifest/ManifestContainer';
 import Load from './LoaderUtils'
 import logo from './thumbcoil_logo.svg';
+import m3u8 from 'm3u8-parser';
 import './App.css';
 
 const initialState = function() {
