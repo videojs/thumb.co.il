@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Box from '../Box';
+import MessageContainer from './MessageContainer';
 
 class MediaStats extends Component {
   render() {
@@ -9,6 +10,7 @@ class MediaStats extends Component {
 
     return (
       <div>
+        <MessageContainer packets={this.props.packets} />
         {boxes}
       </div>
     );

@@ -1,0 +1,15 @@
+.message-container-warning {
+  background-color: rgb(255, 235, 59);
+}
+
+.message-container-error {
+  background-color: rgb(244, 67, 54);
+}
+
+.message-container-warning ul {
+  list-style-type: none;
+}
+
+.message-container-error ul {
+  list-style-type: none;
+}
