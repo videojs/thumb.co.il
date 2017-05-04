@@ -1,0 +1,15 @@
+.message-container-warning {
+  background-color: rgb(255, 255, 153);
+}
+
+.message-container-error {
+  background-color: rgb(255, 51, 51);
+}
+
+.message-container-warning ul {
+  list-style-image: url('./ic_warning_black.svg');
+}
+
+.message-container-error ul {
+  list-style-image: url('./ic_error_black.svg');
+}
