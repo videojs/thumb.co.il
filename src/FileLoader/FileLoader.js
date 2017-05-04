@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import DropzoneContainer from './DropzoneContainer';
 import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+
 import './FileLoader.css';
 
 class FileLoader extends Component {
@@ -65,7 +67,12 @@ class FileLoader extends Component {
             </div>
             <div className="FileLoader-remote">
                 <TextField value={this.state.url} onChange={this.handleChangeRemote} style={{zIndex:1}} />
-                <button type="button" onClick={this.handleClickRemote} style={{zIndex:1}}>Load</button>
+                <FlatButton
+                  label="Load"
+                  onTouchTap={this.handleClickRemote}
+                  style={{zIndex:1, height: '48px', marginLeft: '20px'}}
+                  backgroundColor="#b1c647"
+                  hoverColor="#c1d42f"/>
             </div>
           </div>
         </form>

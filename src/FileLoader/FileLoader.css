@@ -12,7 +12,7 @@
   display: flex;
   justify-content: center;
 }
-
+/*
 .FileLoader-options button {
   font-family: 'Text Me One', sans-serif;
   border: none;
@@ -29,6 +29,7 @@
   cursor: pointer;
   background-color: #c1d42f;
 }
+*/
 
 .FileLoader-local, .FileLoader-remote {
   display: inline-block;
