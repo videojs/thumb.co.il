@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
 
-// import './ManifestTree.css';
+import './ManifestTree.css';
 
 class ManifestTreeSegment extends Component {
   constructor(props) {
@@ -16,9 +17,7 @@ class ManifestTreeSegment extends Component {
 
   render() {
     return (
-      <div>
-        <div className="ManifestTreeSegment" onClick={this.handleClick}>{this.props.segment.uri}</div>
-      </div>
+      <ListItem primaryText={this.props.segment.uri} onTouchTap={this.handleClick} />
     );
   }
 }
@@ -45,10 +44,20 @@ class ManifestTreePlaylist extends Component {
 
     return (
       <div className="ManifestTreePlaylist">
-        <div className="ManifestTreePlaylist-playlist" onClick={this.handleClick}>{this.props.playlist.uri}</div>
-        {this.props.showing && (<div className="ManifestTreePlaylist-segments">{segments}</div>)}
+        <ListItem
+          primaryTogglesNestedList={true}
+          style={{paddingRight: '30px'}}
+          primaryText={this.props.playlist.uri}
+          initiallyOpen={false}
+          nestedItems={segments}
+        />
       </div>
     );
+
+      // <div className="ManifestTreePlaylist">
+        // <div className="ManifestTreePlaylist-playlist" onClick={this.handleClick}>{this.props.playlist.uri}</div>
+        // {this.props.showing && (<div className="ManifestTreePlaylist-segments">{segments}</div>)}
+      // </div>
   }
 }
 
@@ -81,18 +90,16 @@ class ManifestTree extends Component {
                 playlist={playlist}
                 index={index}
                 key={playlist.uri}
-                showing={this.state.showing[index]}
-                toggleShowing={this.toggleShowing}
                 selectMedia={this.props.selectMedia} />
     });
 
     return (
-      <div className="ManifestTree">
-        <div className="ManifestTree-title">Manifest Explorer</div>
-        <List className="ManifestTree-playlists">
+      <List className="ManifestTree">
+        <Subheader style={{borderBottom: '2px solid #ccc'}}>Manifest Explorer</Subheader>
+        <div className="ManifestTree-playlists">
           {playlists}
-        </List>
-      </div>
+        </div>
+      </List>
     );
   }
 }
