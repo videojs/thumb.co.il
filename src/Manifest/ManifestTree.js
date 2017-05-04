@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import './ManifestTree.css';
+import {List, ListItem} from 'material-ui/List';
+
+// import './ManifestTree.css';
 
 class ManifestTreeSegment extends Component {
   constructor(props) {
@@ -87,9 +89,9 @@ class ManifestTree extends Component {
     return (
       <div className="ManifestTree">
         <div className="ManifestTree-title">Manifest Explorer</div>
-        <div className="ManifestTree-playlists">
+        <List className="ManifestTree-playlists">
           {playlists}
-        </div>
+        </List>
       </div>
     );
   }
