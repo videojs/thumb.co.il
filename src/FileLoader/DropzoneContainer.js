@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOMServer from 'react-dom/server'
 import DropzoneComponent from 'react-dropzone-component';
-import '../../node_modules/react-dropzone-component/styles/filepicker.css';
+import IconButton from 'material-ui/IconButton';
+
+import FileUpload from 'material-ui/svg-icons/file/file-upload';
+// import '../../node_modules/react-dropzone-component/styles/filepicker.css';
 
 
 class DropzoneContainer extends Component {
@@ -10,10 +13,7 @@ class DropzoneContainer extends Component {
 
     const previewTemplate = (
       <div className="dz-preview dz-file-preview well" id="dz-preview-template">
-        <div className="dz-details">
-          <div className="dz-filename"><span data-dz-name></span></div>
-          <div className="dz-size" data-dz-size></div>
-        </div>
+
       </div>
     );
 
@@ -38,7 +38,8 @@ class DropzoneContainer extends Component {
     this.dropzone = dropzone;
   }
 
-  handleDrop(event) {
+  handleDrop(file) {
+    this.props.onChange(file);
     if (this.dropzone) {
       this.dropzone.removeAllFiles();
     }
@@ -51,26 +52,12 @@ class DropzoneContainer extends Component {
     // For a list of all possible events (there are many), see README.md!
     const eventHandlers = {
       init: this.handleInit.bind(this),
-      drop: this.handleDrop.bind(this),
-      addedfile: this.props.onChange
+      addedfile: this.handleDrop.bind(this)
     }
-
-    const big = {
-      fontSize: '14px',
-      display: 'block'
-    };
-
-    const small = {
-      fontSize: '12px',
-      display: 'block'
-    };
 
     return (
       <DropzoneComponent config={config} eventHandlers={eventHandlers} djsConfig={djsConfig}>
-        <div className="dz-message">
-          <span style={big}>Drop file here</span>
-          <span style={small}>(or click to browse)</span>
-        </div>
+        <IconButton className="dz-message" style={{border: 'solid 2px #eee', padding: '0'}}><FileUpload color="#eee" /><div className="upload-icon-text">Upload</div></IconButton>
       </DropzoneComponent>
     );
   }

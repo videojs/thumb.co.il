@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FileLoader from './FileLoader/FileLoader';
+import AppHeader from './AppHeader';
 import MediaContainer from './Media/MediaContainer';
 import ManifestContainer from './Manifest/ManifestContainer';
 import Load from './LoaderUtils'
@@ -9,7 +9,7 @@ import './App.css';
 const initialState = function() {
   return {
     media: null,
-    manifest: null
+    manifest: null,
   };
 };
 
@@ -106,19 +106,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="App-header">
-          <div className="App-logo">
-            <img src={logo} alt="logo" />
-            <h1 className="App-name">thumb.co.il</h1>
-          </div>
-          <div className="App-info">
-            <div className="App-description">A web-based video inspector</div>
-            <div className="App-sub-description">Inspect the structure of an MP4, FLV or MPEG-2 Transport Stream</div>
-          </div>
-          <div className="App-fileloader">
-            <FileLoader requestLoad={ this.requestLoad } />
-          </div>
-        </div>
+        <AppHeader requestLoad={this.requestLoad} />
         {appContent}
       </div>
     );

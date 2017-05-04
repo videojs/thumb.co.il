@@ -10,23 +10,19 @@
 
 .FileLoader-options {
   display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  height: 100%;
+  justify-content: center;
 }
 
 .FileLoader-options button {
-  width: 100%;
   font-family: 'Text Me One', sans-serif;
   border: none;
   background-color: #b1c647;
   color: #333;
-  margin-top: 12px;
-  flex: 0 0 45px;
   font-size: 14px;
   font-weight: 700;
   border-radius: 5px;
   font-weight: bold;
+  margin-left: 5px;
 }
 
 .FileLoader-options button:hover {
@@ -35,19 +31,31 @@
 }
 
 .FileLoader-local, .FileLoader-remote {
-  flex: 0 0 calc(50% - 5px);
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: inline-block;
 }
 
-.FileLoader-remote input, .FileLoader .filepicker {
-  height: 45px;
-  min-height: 0;
-  padding: 5px;
-  border-radius: 5px;
-  background: #eee;
-  border: 2px #e1e1e1 solid;
-  color: #515151;
+.FileLoader-remote {
+  display: flex;
+  margin-left: 20px;
+}
+
+.FileLoader-remote input{
+  color: #eee !important;
+}
+
+.FileLoader-local .filepicker {
+  color: #eee;
+}
+
+.FileLoader-local .filepicker svg {
+  margin: 0 auto;
+}
+
+.upload-icon-text {
+  height: 12px;
+  margin: 0 auto;
+  font-size: 10px;
+  color: #eee;
+  z-index: 1;
+  width: 40px;
 }

@@ -18,6 +18,12 @@ body{
 }
 
 .App {
+  height: 100%;
+  position: relative;
+}
+
+/*
+.App {
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -93,14 +99,21 @@ body{
 .App-intro {
   font-size: large;
 }
+*/
 
 .App-content {
   margin: 12px 10px;
   background: #ddd;
   display: flex;
   border: solid 2px #ccc;
-  height: 100%;
-  overflow: none;
+  height: calc(100% - 88px);
+  overflow: hidden;
+  /*
+  background-image: url('./thumbcoil_logo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  */
 }
 
 .App-no-content {
@@ -110,6 +123,8 @@ body{
   display: flex;
   flex-direction: column;
   justify-content:  center;
+  position: relative;
   width: 100%;
   font-size: 18px;
 }
+

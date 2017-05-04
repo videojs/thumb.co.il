@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DropzoneContainer from './DropzoneContainer';
+import TextField from 'material-ui/TextField';
 import './FileLoader.css';
 
 class FileLoader extends Component {
@@ -7,20 +8,23 @@ class FileLoader extends Component {
     super(props);
 
     this.state = {
-      file: null,
       url: 'http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8'
     };
 
     this.handleChangeLocal = this.handleChangeLocal.bind(this);
     this.handleChangeRemote = this.handleChangeRemote.bind(this);
-    this.handleClickLocal = this.handleClickLocal.bind(this);
     this.handleClickRemote = this.handleClickRemote.bind(this);
   }
 
   handleChangeLocal(file) {
-    this.setState({
-      file
-    });
+    const requestInfo = {
+      options: file,
+      reset: true,
+      location: 'local'
+    };
+
+    this.props.requestLoad(requestInfo);
+    this.props.closeDrawer();
   }
 
   handleChangeRemote(event) {
@@ -29,22 +33,11 @@ class FileLoader extends Component {
     });
   }
 
-  handleClickLocal() {
-    if (!this.state.file) {
-      // no blob to load
-      return;
+  handleClickRemote(event) {
+    if (event) {
+      event.preventDefault();
     }
 
-    const requestInfo = {
-      options: this.state.file,
-      reset: true,
-      location: 'local'
-    };
-
-    this.props.requestLoad(requestInfo);
-  }
-
-  handleClickRemote() {
     if (!this.state.url) {
       // no url to load
       return;
@@ -59,20 +52,20 @@ class FileLoader extends Component {
     };
 
     this.props.requestLoad(requestInfo);
+    this.props.closeDrawer();
   }
 
   render() {
     return (
       <div className="FileLoader">
-        <form>
+        <form onSubmit={this.handleClickRemote}>
           <div className="FileLoader-options">
-            <div className="FileLoader-remote">
-                <input type="text" value={this.state.url} onChange={this.handleChangeRemote} />
-                <button type="button" onClick={this.handleClickRemote}>Load remote URL</button>
-            </div>
             <div className="FileLoader-local">
               <DropzoneContainer onChange={this.handleChangeLocal} />
-              <button type="button" onClick={this.handleClickLocal}>Load local File</button>
+            </div>
+            <div className="FileLoader-remote">
+                <TextField value={this.state.url} onChange={this.handleChangeRemote} style={{zIndex:1}} />
+                <button type="button" onClick={this.handleClickRemote} style={{zIndex:1}}>Load</button>
             </div>
           </div>
         </form>
