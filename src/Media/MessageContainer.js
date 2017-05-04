@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import thumbcoil from 'thumbcoil';
 import './MessageContainer.css';
+import WarningIcon from 'material-ui/svg-icons/alert/warning';
+import ErrorIcon from 'material-ui/svg-icons/alert/error';
 
 class MessageContainer extends Component {
   constructor(props) {
@@ -17,12 +19,14 @@ class MessageContainer extends Component {
     }
 
     const className = `message-container-${type}`;
+    const icon =
+      type === 'error' ? <ErrorIcon /> : type === 'warning' ? <WarningIcon /> : null;
 
     return (
       <div className={className}>
         <ul>
         {messages.map((message) => {
-          return <li key={message}>{message}</li>
+          return <li key={message}>{icon} {message}</li>
         })}
         </ul>
       </div>
