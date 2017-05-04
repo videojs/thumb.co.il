@@ -84,6 +84,26 @@ class App extends Component {
   }
 
   render() {
+    let appContent;
+
+    if (this.state.manifest || this.state.media) {
+      appContent = (
+        <div className="App-content">
+          {this.state.manifest && <ManifestContainer manifest={this.state.manifest} selectMedia={this.selectMedia} /> }
+          {this.state.media && <MediaContainer name={this.state.media.name} bytes={this.state.media.bytes} /> }
+        </div>
+      );
+    } else {
+      appContent = (
+        <div className="App-content">
+          <div className="App-no-content">
+            <div>Load a media file or stream manifest to start.</div>
+            <div>Thumbcoil runs entirely within the browser so your video data will <strong>NOT</strong> be transmitted to a server.</div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <div className="App-header">
@@ -91,15 +111,15 @@ class App extends Component {
             <img src={logo} alt="logo" />
             <h1 className="App-name">thumb.co.il</h1>
           </div>
-          <div className="App-fileloader">
-            <FileLoader requestLoad={ this.requestLoad } />
-          </div>            <div className="App-info">
+          <div className="App-info">
             <div className="App-description">A web-based video inspector</div>
             <div className="App-sub-description">Inspect the structure of an MP4, FLV or MPEG-2 Transport Stream</div>
           </div>
+          <div className="App-fileloader">
+            <FileLoader requestLoad={ this.requestLoad } />
+          </div>
         </div>
-        {this.state.manifest && (<ManifestContainer manifest={this.state.manifest} selectMedia={this.selectMedia} />) }
-        {this.state.media && <MediaContainer name={this.state.media.name} bytes={this.state.media.bytes} /> }
+        {appContent}
       </div>
     );
   }

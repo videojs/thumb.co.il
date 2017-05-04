@@ -22,7 +22,7 @@
   background-color: #b1c647;
   color: #333;
   margin-top: 12px;
-  flex: 0 0 36px;
+  flex: 0 0 45px;
   font-size: 14px;
   font-weight: 700;
   border-radius: 5px;
@@ -43,7 +43,7 @@
 }
 
 .FileLoader-remote input, .FileLoader .filepicker {
-  height: 30px;
+  height: 45px;
   min-height: 0;
   padding: 5px;
   border-radius: 5px;

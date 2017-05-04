@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ManifestTree.css';
 
 class ManifestTreeSegment extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class ManifestTreeSegment extends Component {
   render() {
     return (
       <div>
-        <div onClick={this.handleClick}>{this.props.segment.uri}</div>
+        <div className="ManifestTreeSegment" onClick={this.handleClick}>{this.props.segment.uri}</div>
       </div>
     );
   }
@@ -41,9 +42,9 @@ class ManifestTreePlaylist extends Component {
     }
 
     return (
-      <div>
-        <div onClick={this.handleClick}>{this.props.playlist.uri}</div>
-        {this.props.showing && (<div>{segments}</div>)}
+      <div className="ManifestTreePlaylist">
+        <div className="ManifestTreePlaylist-playlist" onClick={this.handleClick}>{this.props.playlist.uri}</div>
+        {this.props.showing && (<div className="ManifestTreePlaylist-segments">{segments}</div>)}
       </div>
     );
   }
@@ -84,8 +85,11 @@ class ManifestTree extends Component {
     });
 
     return (
-      <div>
-        {playlists}
+      <div className="ManifestTree">
+        <div className="ManifestTree-title">Manifest Explorer</div>
+        <div className="ManifestTree-playlists">
+          {playlists}
+        </div>
       </div>
     );
   }

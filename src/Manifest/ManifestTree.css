@@ -1,0 +1,32 @@
+.ManifestTree {
+  flex: 0 0 300px;
+  text-align: left;
+  padding: 6px 10px;
+  border-right: solid 2px #ccc;
+}
+
+.ManifestTree-title {
+  color: #515151;
+  height: 24px;
+}
+
+.ManifestTree-playlists {
+  background: #eee;
+  overflow: auto;
+  height: calc(100% - 24px);
+}
+
+.ManifestTreePlaylist-playlist, .ManifestTreeSegment {
+  padding: 3px 20px;
+  background: #eee;
+}
+
+.ManifestTreePlaylist-playlist:hover, .ManifestTreeSegment:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+.ManifestTreePlaylist-segments {
+  margin: 0 20px;
+}
+

@@ -1,23 +1,40 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body{
   background-color: #eee;
   color: #717171;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
 }
 
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%
 }
 
 .App-header {
   height: auto;
   display: flex;
-  padding: 0 20px 6px 0;
+  padding: 18px 15px 6px 0;
   font-family: 'Text Me One', sans-serif;
   font-size: 36px;
   justify-content: flex-start;
   align-items: stretch;
   background-color: #333;
   color: #ddd;
-  margin-bottom: 24px;
+  margin-bottom: 0px;
   border-bottom: solid 1px #ccc;
 }
 
@@ -30,6 +47,7 @@ body{
   margin: 20px 0 0 20px;
   align-self: flex-end;
   transform: rotate(-30deg);
+  order: 1;
 }
 
 .App-logo img {
@@ -53,12 +71,15 @@ body{
   align-self: center;
   flex-grow: 1;
   text-align: right;
-  padding-bottom: 6px;}
+  padding-bottom: 6px;
+  order: 3
+}
 
 .App-fileloader {
   flex: 0 0 350px;
   align-self: stretch;
   margin: 12px 20px 6px;
+  order: 2;
 }
 
 .App-description {
@@ -71,4 +92,24 @@ body{
 
 .App-intro {
   font-size: large;
+}
+
+.App-content {
+  margin: 12px 10px;
+  background: #ddd;
+  display: flex;
+  border: solid 2px #ccc;
+  height: 100%;
+  overflow: none;
+}
+
+.App-no-content {
+  margin: 0 auto;
+  padding: 48px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content:  center;
+  width: 100%;
+  font-size: 18px;
 }
