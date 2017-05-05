@@ -1,0 +1,25 @@
+.FrameInfo {
+  padding: 12px 20px;
+}
+
+.FrameInfoType {
+  font-weight: bold;
+  color: #515151;
+  font-size: 24px;
+}
+
+.Box-properties {
+  margin: 24px 0;
+}
+
+.Box-property {
+  display: flex;
+}
+
+.Box-property-name {
+  flex: 0 0 300px;
+}
+
+.Box-property-value {
+  flex-grow: 1;
+}

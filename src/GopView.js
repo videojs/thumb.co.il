@@ -113,8 +113,8 @@ class GopView extends Component {
       return obj;
     });
 
-    console.log(frames);
-    console.log(gops);
+    // console.log(frames);
+    // console.log(gops);
 
     this.state = {
       name: this.props.name,

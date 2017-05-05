@@ -49,7 +49,7 @@ class MessageContainer extends Component {
       this.messageList(this.state.validationResults.errors, 'error');
 
     return (
-      <div>
+      <div className="MessageContainer">
       {warningsRender}
       {errorsRender}
       </div>

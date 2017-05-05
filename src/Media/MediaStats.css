@@ -1,0 +1,52 @@
+.MediaStats {
+  height: 100%;
+}
+
+.FrameStats {
+  display: flex;
+  height: 100%;
+}
+
+.FrameStats .FrameList {
+  flex: 0 0 200px;
+  height: 100%;
+  margin-right: 10px;
+  padding-right:15px;
+  overflow: auto;
+}
+
+.FrameStats > .FrameInfo {
+  height: 100%;
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.FrameListItem:before {
+  content: '';
+  margin: 8px 0;
+  width: 10px;
+  height: 32px;
+  background-color: #717171;
+  position: absolute;
+  right: 0;
+  transition: width 0.3s;
+}
+
+.FrameListItem.FrameListItem-active:before {
+  width: 50px;
+}
+
+.FrameListItem.FrameListItem-type-video:before {
+  background-color: #b1c647;
+}
+
+.FrameListItem.FrameListItem-type-audio:before {
+  background-color: #b43665;
+}
+
+.FrameListItem.FrameListItem-type-pat:before,
+.FrameListItem.FrameListItem-type-pmt:before,
+.FrameListItem.FrameListItem-type-metadata:before {
+  background-color: #77b3bb;
+}
+

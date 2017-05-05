@@ -1,17 +1,34 @@
 import React, { Component } from 'react';
-import Box from '../Box';
 import MessageContainer from './MessageContainer';
+import { FrameList, FrameInfo } from './Frame.js';
+
+import './MediaStats.css';
 
 class MediaStats extends Component {
-  render() {
-    const boxes = this.props.packets.map((packet, index) => {
-      return <Box box={packet} key={index} />
-    });
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      currentFrame: 0
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(index) {
+    this.setState({
+      currentFrame: index
+    });
+  }
+
+  render() {
     return (
-      <div>
+      <div className="MediaStats">
         <MessageContainer packets={this.props.packets} />
-        {boxes}
+        <div className="FrameStats">
+          <FrameList selectFrame={this.handleClick} packets={this.props.packets} currentFrame={this.state.currentFrame} />
+          <FrameInfo box={this.props.packets[this.state.currentFrame]} />
+        </div>
       </div>
     );
   }

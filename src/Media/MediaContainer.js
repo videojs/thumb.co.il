@@ -37,13 +37,13 @@ class MediaContainer extends Component {
       <div className="MediaContainer">
         <Tabs
           inkBarStyle={{backgroundColor: '#b43665'}}
-          tabItemContainerStyle={{backgroundColor: '#77b3bb', height: '50px'}}
+          tabItemContainerStyle={{backgroundColor: '#eee', height: '50px'}}
           contentContainerClassName="MediaContainer-content"
         >
-          <Tab label="Overview">
+          <Tab label="Overview" buttonStyle={{color:'#515151'}}>
             <MediaStats packets={this.state.parsed.esMap} />
           </Tab>
-          <Tab label="Gop Structure">
+          <Tab label="Gop Structure" buttonStyle={{color:'#515151'}}>
             <GopView name={this.props.name} packets={this.state.parsed.esMap} />
           </Tab>
         </Tabs>

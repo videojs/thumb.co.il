@@ -7,7 +7,6 @@
   height: 100%;
 }
 
-.MediaContainer-content {
-  overflow: auto;
+.MediaContainer-content, .MediaContainer-content > div {
   height: 100%;
 }
