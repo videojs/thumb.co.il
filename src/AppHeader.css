@@ -4,12 +4,30 @@
   margin: 0 0 0 5px;
 }
 
-.App-logo img {
+.AppHeader .App-logo img {
   max-width: 100%;
   max-height: 100%;
   width: 100%;
   transform: rotate(-30deg);
   margin-top: 4px;
+  transition: all 1s;
+}
+.AppHeader .App-logo {
+}
+
+.AppHeader.AppHeader-drawer-open .App-logo img {
+  max-width: 250%;
+  max-height: 250%;
+  width: 250%;
+}
+
+.AppHeader>div>h1 {
+  transition: all 1s;
+}
+
+.AppHeader.AppHeader-drawer-open>div>h1 {
+  font-size: 250% !important;
+  padding-left: calc(50% - 140px);
 }
 
 .AppHeader-drawer-container {

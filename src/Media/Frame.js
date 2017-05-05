@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Box from '../Box';
 import {List, ListItem} from 'material-ui/List';
 
 import './FrameInfo.css';
@@ -10,64 +11,74 @@ const isObj = function(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]';
 }
 
-export class FrameInfo extends Component {
-  render() {
-    const box =this.props.box;
-    const boxProperties = Object.keys(box).filter((key) => {
-      return isObj(box[key]) ||
-             (Array.isArray(box[key]) && isObj(box[key][0]));
-    });
-    const exclusions = attributes.concat(specialProperties).concat(boxProperties);
+// export class FrameInfo extends Component {
+//   render() {
+//     const box =this.props.box;
+//     const boxProperties = Object.keys(box).filter((key) => {
+//       return isObj(box[key]) ||
+//              (Array.isArray(box[key]) && isObj(box[key][0]));
+//     });
+//     const exclusions = attributes.concat(specialProperties).concat(boxProperties);
 
-    const subProperties = Object.keys(box).filter((key) => {
-      return exclusions.indexOf(key) === -1;
-    }).map((key, index) => {
-      return (
-        <div className="Box-property" key={index}>
-          <div className="Box-property-name">{key.toString()}</div>
-          <div className="Box-property-value">{box[key].toString()}</div>
-        </div>
-      );
-    });
+//     const subProperties = Object.keys(box).filter((key) => {
+//       return exclusions.indexOf(key) === -1;
+//     }).map((key, index) => {
+//       return (
+//         <div className="Box-property" key={index}>
+//           <div className="Box-property-name">{key.toString()}</div>
+//           <div className="Box-property-value">{box[key].toString()}</div>
+//         </div>
+//       );
+//     });
 
-    const subBoxes = [];
+//     const subBoxes = [];
 
-    if (box.boxes && box.boxes.length) {
-      box.boxes.forEach((subBox, index) => {
-        subBoxes.push(<FrameInfo box={subBox} key={index} />);
-      });
-    } else if (boxProperties.length) {
-      boxProperties.forEach((key, index) => {
-        if (Array.isArray(box[key])) {
-          let subBox = {
-            type: key,
-            boxes: box[key],
-            size: box[key].size
-          };
+//     if (box.boxes && box.boxes.length) {
+//       box.boxes.forEach((subBox, index) => {
+//         subBoxes.push(<FrameInfo box={subBox} key={index} />);
+//       });
+//     } else if (boxProperties.length) {
+//       boxProperties.forEach((key, index) => {
+//         if (Array.isArray(box[key])) {
+//           let subBox = {
+//             type: key,
+//             boxes: box[key],
+//             size: box[key].size
+//           };
 
-          subBoxes.push(<FrameInfo box={subBox} key={index} />);
-        } else {
-          subBoxes.push(<FrameInfo box={box[key]} key={index} />);
-        }
-      });
-    }
+//           subBoxes.push(<FrameInfo box={subBox} key={index} />);
+//         } else {
+//           subBoxes.push(<FrameInfo box={box[key]} key={index} />);
+//         }
+//       });
+//     }
 
-    return (
-      <div className="FrameInfo">
-        <div className="FrameInfoType">{this.props.box.type}</div>
-        {subProperties.length ?
-          (<div className="Box-properties">
-            {subProperties}
-          </div>) : null
-        }
-        {subBoxes.length ?
-          (<div className="Box-boxes">
-            {subBoxes}
-          </div>) : null
-        }
-      </div>
-    );
-  }
+//     return (
+//       <div className="FrameInfo">
+//         <div className="FrameInfoType">{this.props.box.type}</div>
+//         {subProperties.length ?
+//           (<div className="Box-properties">
+//             {subProperties}
+//           </div>) : null
+//         }
+//         {subBoxes.length ?
+//           (<div className="Box-boxes">
+//             {subBoxes}
+//           </div>) : null
+//         }
+//       </div>
+//     );
+//   }
+// }
+
+export function FrameInfo(props) {
+  <Box box={props.box} collapsed={false}/>
+
+  return (
+    <div className="FrameInfo">
+      <Box box={props.box} collapsed={false}/>
+    </div>
+  );
 }
 
 class FrameListItem extends Component {

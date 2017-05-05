@@ -74,7 +74,9 @@ class AppHeader extends Component {
         <AppBar
           title="thumb.co.il"
           titleStyle={{
-            marginLeft: '5px'
+            marginLeft: '5px',
+            display: 'inline-block',
+            flex: 'none'
           }}
           iconElementLeft={appLogo}
           iconElementRight={expandIcon}

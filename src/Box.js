@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Box.css';
 
 const attributes = ['size', 'flags', 'type', 'version'];
-const specialProperties = ['boxes', 'nals', 'samples', 'packetCount'];
+const specialProperties = ['data', 'tsPacketIndices', 'boxes', 'nals', 'samples', 'packetCount'];
 
 const isObj = function(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]';
@@ -41,7 +41,7 @@ class Box extends Component {
     super(props);
 
     this.state = {
-      collapsed: true
+      collapsed: props.collapsed === undefined ? true : false
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -106,7 +106,6 @@ class Box extends Component {
     return (
       <div className={className}>
         <BoxType type={box.type} onClick={this.handleClick} />
-
         {!this.state.collapsed && uncollapsed}
       </div>
     );
