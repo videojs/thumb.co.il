@@ -28,7 +28,7 @@ class MessageContainer extends Component {
       <div className={className}>
         <ul>
         {messages.map((message) => {
-          return <li key={message}>{icon} {message}</li>
+          return <li className="MessageItem" key={message}>{icon} {message}</li>
         })}
         </ul>
       </div>

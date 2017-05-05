@@ -5,3 +5,13 @@
 .message-container-error ul {
   list-style-type: none;
 }
+
+li.MessageItem {
+  height: 28px;
+  line-height: 28px;
+}
+
+li.MessageItem > svg {
+  position: relative;
+  top: 6px;
+}

@@ -7,26 +7,32 @@
 	<![CDATA[
 		.st0{fill:#515151;}
 		#thumb-print {
-			/* animation: App-logo-throb-print infinite 4s ease-in-out; */
-			transform-origin: 50% 50%;
-		}
-		#play-button {
-			animation: App-logo-throb-play infinite 24s ease-in-out;
-			transform-origin: 50% 50%;
+      animation: App-logo-throb-print infinite 30s ease-in-out;
+      transform-origin: 50% 50%;
+    }
+    #play-button {
+      animation: App-logo-throb-play infinite 30s ease-in-out;
 			fill:#b43665;
-		}
-		@keyframes App-logo-throb-print {
-			10% { transform: scale(1); }
-			50% { transform: scale(0.95); }
-			90% { transform: scale(1); }
-		}
-		@keyframes App-logo-throb-play {
+      transform-origin: 50% 50%;
+    }
+		@keyframes App-logo-color-play {
 			0% { fill: #77b3bb; }
 			25% { fill: #b43665; }
 			50% { fill: #b1c647 }
 			75% { fill: #b43665; }
 			100% { fill: #77b3bb; }
 		}
+
+		@keyframes App-logo-throb-print {
+      1% { transform: scale(0.9); }
+      5% { transform: scale(1.0); }
+      9% { transform: scale(0.9); }
+    }
+    @keyframes App-logo-throb-play {
+      0% { transform: scale(0.9); }
+      5% { transform: scale(1.2); }
+      10% { transform: scale(0.9); }
+    }
 	]]>
 	</style>
 </defs>
