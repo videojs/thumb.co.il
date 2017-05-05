@@ -20,7 +20,9 @@ class MessageContainer extends Component {
 
     const className = `message-container-${type}`;
     const icon =
-      type === 'error' ? <ErrorIcon /> : type === 'warning' ? <WarningIcon /> : null;
+      type === 'error' ?
+        <ErrorIcon color="#f44336" /> :
+        type === 'warning' ? <WarningIcon color="#ff9900" /> : null;
 
     return (
       <div className={className}>
