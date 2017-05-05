@@ -103,9 +103,7 @@ body{
 
 .App-content {
   margin: 12px 10px;
-  background: #ddd;
   display: flex;
-  border: solid 2px #ccc;
   height: calc(100% - 88px);
   overflow: hidden;
   /*

@@ -2,3 +2,12 @@
   width: 100%;
   overflow: hidden;
 }
+
+.MediaContainer > div {
+  height: 100%;
+}
+
+.MediaContainer-content {
+  overflow: auto;
+  height: 100%;
+}
