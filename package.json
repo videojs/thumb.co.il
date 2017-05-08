@@ -13,7 +13,7 @@
     "react-dropzone-component": "^2.0.0",
     "react-tap-event-plugin": "^2.0.1",
     "react-vis": "git://github.com/imbcmdth/react-vis.git#built",
-    "thumbcoil": "^1.2.3",
+    "thumbcoil": "^1.2.3-hackweek2",
     "url-toolkit": "^2.1.1",
     "xhr": "^2.4.0"
   },
@@ -64,7 +64,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "predeploy": "npm run build && echo \"thumb.co.il\" > ./build/CNAME && mkdirp build/legacy && cp -r ./node_modules/thumbcoil/ build/legacy/",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "jest": {
