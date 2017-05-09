@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MessageContainer from './MessageContainer';
 import { FrameList, FrameInfo } from './Frame.js';
+import ga from 'react-google-analytics';
 
 import './MediaStats.css';
 
@@ -16,6 +17,13 @@ class MediaStats extends Component {
   }
 
   handleClick(index) {
+    const packet = this.props.packets[this.state.currentFrame];
+
+    ga('send', 'event', {
+      eventCategory: 'FrameList',
+      eventAction: `selected ${packet.type}`
+    });
+
     this.setState({
       currentFrame: index
     });

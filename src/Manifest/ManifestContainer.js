@@ -3,6 +3,7 @@ import m3u8 from 'm3u8-parser';
 import extend from 'extend';
 import resolveUrl from './resolve-url';
 import ManifestTree from './ManifestTree';
+import ga from 'react-google-analytics';
 
 /**
  * Turns segment byterange into a string suitable for use in
@@ -92,11 +93,19 @@ class ManifestContainer extends Component {
 
     if (manifest.playlists) {
       // loaded master
+      ga('send', 'event', {
+        eventCategory: 'ManifestContainer',
+        eventAction: 'loadedMasterPlaylist'
+      });
       this.state = {
         master: this.loadedMaster(manifest)
       };
     } else {
       // loaded media playlist
+      ga('send', 'event', {
+        eventCategory: 'ManifestContainer',
+        eventAction: 'loadedMediaPlaylist'
+      });
       this.state = {
         master: this.loadedMediaPlaylist(manifest)
       };
@@ -156,7 +165,6 @@ class ManifestContainer extends Component {
 
   loadPlaylist(playlist) {
     let xhr = new XMLHttpRequest();
-
     xhr.responseType = 'text';
     xhr.addEventListener('load', () => {
       this.handlePlaylistLoad(xhr.response, playlist.uri);

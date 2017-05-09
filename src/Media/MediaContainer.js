@@ -3,8 +3,16 @@ import thumbcoil from 'thumbcoil';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import MediaStats from './MediaStats';
 import GopView from '../GopView';
+import ga from 'react-google-analytics';
 
 import './MediaContainer.css';
+
+const tabChanged = (tabName) => () => {
+  ga('send', 'event', {
+    eventCategory: 'MediaContainer',
+    eventAction: `view - ${tabName}`
+  });
+};
 
 class MediaContainer extends Component {
   constructor(props) {
@@ -33,17 +41,19 @@ class MediaContainer extends Component {
       return null;
     }
 
+    // Log default tab
+    tabChanged('Details')();
+
     return (
       <div className="MediaContainer">
         <Tabs
           inkBarStyle={{backgroundColor: '#b43665'}}
           tabItemContainerStyle={{backgroundColor: '#eee', height: '50px'}}
-          contentContainerClassName="MediaContainer-content"
-        >
-          <Tab label="Overview" buttonStyle={{color:'#515151'}}>
+          contentContainerClassName="MediaContainer-content">
+          <Tab onActive={tabChanged('Details')} label="Overview" buttonStyle={{color:'#515151'}}>
             <MediaStats packets={this.state.parsed.esMap} />
           </Tab>
-          <Tab label="Gop Structure" buttonStyle={{color:'#515151'}}>
+          <Tab onActive={tabChanged('Gop Structure')} label="Gop Structure" buttonStyle={{color:'#515151'}}>
             <GopView name={this.props.name} packets={this.state.parsed.esMap} />
           </Tab>
         </Tabs>

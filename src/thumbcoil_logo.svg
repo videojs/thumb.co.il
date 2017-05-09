@@ -24,14 +24,17 @@
 		}
 
 		@keyframes App-logo-throb-print {
+      0% { transform: scale(0.9); }
       1% { transform: scale(0.9); }
       5% { transform: scale(1.0); }
       9% { transform: scale(0.9); }
+      100% { transform: scale(0.9); }
     }
     @keyframes App-logo-throb-play {
       0% { transform: scale(0.9); }
       5% { transform: scale(1.2); }
       10% { transform: scale(0.9); }
+      100% { transform: scale(0.9); }
     }
 	]]>
 	</style>

@@ -6,7 +6,9 @@ import Load from './LoaderUtils'
 import logo from './thumbcoil_logo.svg';
 import m3u8 from 'm3u8-parser';
 import './App.css';
+import ga from 'react-google-analytics';
 
+const GAInitiailizer = ga.Initializer;
 const initialState = function() {
   return {
     media: null,
@@ -21,6 +23,9 @@ class App extends Component {
 
     this.requestLoad = this.requestLoad.bind(this);
     this.selectMedia = this.selectMedia.bind(this);
+
+    ga('create', 'UA-96900670-1', 'auto');
+    ga('send', 'pageview');
   }
 
   requestLoad(requestInfo) {
@@ -38,8 +43,16 @@ class App extends Component {
 
   localLoadend(data) {
     if (/\.m3u8/i.test(data.name)) {
-      this.loadedManifest(data);
+      ga('send', 'event', {
+        eventCategory: 'App',
+        eventAction: 'loading HLS'
+      });
+       this.loadedManifest(data);
     } else if(/\.ts/i.test(data.name)){
+      ga('send', 'event', {
+        eventCategory: 'App',
+        eventAction: 'loading MPEG2-TS'
+      });
       this.loadedTS(data);
     }
   }
@@ -102,8 +115,8 @@ class App extends Component {
       appContent = (
         <div className="App-content">
           <div className="App-no-content">
-            <div>Load a media file or stream manifest to start.</div>
-            <div>Thumbcoil runs entirely within the browser so your video data will <strong>NOT</strong> be transmitted to a server.</div>
+            <h2>Load an HLS playlist or an individual MPEG2-TS segment above to begin.</h2>
+            <h3>Thumbcoil magically runs within the browser so your video data will <strong>NEVER</strong> be transmitted to a server.</h3>
           </div>
         </div>
       );
@@ -113,6 +126,7 @@ class App extends Component {
       <div className="App">
         <AppHeader requestLoad={this.requestLoad} />
         {appContent}
+        <GAInitiailizer />
       </div>
     );
   }

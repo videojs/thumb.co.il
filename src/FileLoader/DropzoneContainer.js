@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server'
 import DropzoneComponent from 'react-dropzone-component';
 import IconButton from 'material-ui/IconButton';
 
-import FileUpload from 'material-ui/svg-icons/editor/attach-file';
+import FileUpload from 'material-ui/svg-icons/file/folder-open';
 // import '../../node_modules/react-dropzone-component/styles/filepicker.css';
 
 

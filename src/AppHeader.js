@@ -35,8 +35,8 @@ class AppHeader extends Component {
     );
     const appInfo = (
       <div className="App-info">
-        <div className="App-description">A web-based video inspector</div>
-        <div className="App-sub-description">Inspect the structure of an MP4, FLV or MPEG-2 Transport Stream</div>
+        <h2 className="App-description">The only 100% browser-based video inspector</h2>
+        <h3 className="App-sub-description">Deeply inspect the structure of an MPEG-2 Transport Stream including H.264 and AAC bitstreams!</h3>
       </div>
     );
     const appFileloader = (

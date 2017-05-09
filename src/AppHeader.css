@@ -16,9 +16,9 @@
 }
 
 .AppHeader.AppHeader-drawer-open .App-logo img {
-  max-width: 250%;
-  max-height: 250%;
-  width: 250%;
+  max-width: 400%;
+  max-height: 400%;
+  width: 400%;
 }
 
 .AppHeader>div>h1 {
@@ -26,8 +26,8 @@
 }
 
 .AppHeader.AppHeader-drawer-open>div>h1 {
-  font-size: 250% !important;
-  padding-left: calc(50% - 140px);
+  font-size: 400% !important;
+  padding-left: calc(50% - 200px);
 }
 
 .AppHeader-drawer-container {
@@ -65,7 +65,7 @@
 .App-info {
   text-align: center;
   padding: 24px 0 48px;
-  font-size: 36px;
+  font-size: 24px;
 }
 
 .App-fileloader {
