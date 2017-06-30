@@ -27,8 +27,14 @@ const local = function(file, callback) {
 
 const decrypt = (callback, iv, encryptedData) => (error, keyData) => {
   const encrypted = new Uint8Array(encryptedData.body);
-  const key = new Uint32Array(keyData.body);
   const ivCopy = new Uint32Array(iv);
+  const view = new DataView(keyData.body);
+  const key = new Uint32Array([
+    view.getUint32(0),
+    view.getUint32(4),
+    view.getUint32(8),
+    view.getUint32(12)
+  ]);
 
   /* eslint-disable no-new, handle-callback-err */
   new Decrypter(encrypted,
@@ -37,7 +43,7 @@ const decrypt = (callback, iv, encryptedData) => (error, keyData) => {
                 function(err, bytes) {
                   return callback(null, {
                     url: encryptedData.url,
-                    body: bytes
+                    body: bytes.buffer
                   });
                 });
 };
