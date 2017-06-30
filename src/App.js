@@ -94,6 +94,13 @@ class App extends Component {
       reset: false
     };
 
+    if (media.key) {
+      requestInfo.options.key = {
+        uri: media.key.resolvedUri,
+        iv: media.key.iv
+      };
+    }
+
     this.setState({
       media: null
     });
