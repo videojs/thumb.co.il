@@ -1,3 +1,8 @@
+# Thumb.co.il Front End
+
+This is the front end for [Thumb.co.il](http://thumb.co.il/), built on React. The library used for inspection can be found at https://github.com/videojs/thumbcoil.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
